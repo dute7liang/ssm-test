@@ -3,7 +3,6 @@
     xmlns="http://java.sun.com/xml/ns/javaee"  
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
     version="3.0">  
-    <display-name>Archetype Created Web Application</display-name>  
     <welcome-file-list>  
         <welcome-file>/index.jsp</welcome-file>  
     </welcome-file-list>  
@@ -12,7 +11,7 @@
     <!-- Spring和mybatis的配置文件 -->  
     <context-param>  
         <param-name>contextConfigLocation</param-name>  
-        <param-value>classpath:config/spring-mybatis.xml</param-value>  
+        <param-value>classpath:config/spring-*.xml</param-value>  
     </context-param>  
     <!-- 编码过滤器 -->  
     <filter>  
@@ -28,6 +27,27 @@
         <filter-name>encodingFilter</filter-name>  
         <url-pattern>/*</url-pattern>  
     </filter-mapping>  
+    <!-- 配置静态资源不经过spring mvc -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.json</url-pattern>
+		<url-pattern>*.gif</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+		<url-pattern>*.doc</url-pattern>
+		<url-pattern>*.xls</url-pattern>
+		<url-pattern>*.docx</url-pattern>
+		<url-pattern>*.xlsx</url-pattern>
+		<url-pattern>*.txt</url-pattern>
+		<url-pattern>*.swf</url-pattern>
+		<url-pattern>*.woff</url-pattern>
+		<url-pattern>*.pdf</url-pattern>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
     <!-- Spring监听器 -->  
     <listener>  
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
@@ -48,6 +68,7 @@
         <load-on-startup>1</load-on-startup>  
         <async-supported>true</async-supported>  
     </servlet>  
+    <!-- 配置spring mvc mapping -->
     <servlet-mapping>  
         <servlet-name>SpringMVC</servlet-name>  
         <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->  
